@@ -10,6 +10,7 @@ public class GameManagerSingleton : MonoBehaviour
 
     [HideInInspector] public GameObject player;
     [HideInInspector] public bool isPlayerAlive;
+    [HideInInspector] public bool isGamePaused;
 
     private Controls m_controls;
 
@@ -22,6 +23,7 @@ public class GameManagerSingleton : MonoBehaviour
         }
 
         isPlayerAlive = true;
+        isGamePaused = false;
 
         m_controls = new Controls();
     }
@@ -37,7 +39,13 @@ public class GameManagerSingleton : MonoBehaviour
     }
 
     void PauseGame(InputAction.CallbackContext ctx){
-        // There is like a whole lot to fix about this
-        // timescale it is i guess
+        if (isGamePaused){
+            Time.timeScale = 1f;
+            isGamePaused = false;
+        }
+        else{
+            Time.timeScale = 0f;
+            isGamePaused = true;
+        }
     }
 }

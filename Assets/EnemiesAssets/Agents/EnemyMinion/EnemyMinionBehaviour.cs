@@ -18,8 +18,15 @@ public class EnemyMinionBehaviour : BaseEnemy
     [HideInInspector] public EnemyMinionBehaviour leader;
 
     protected override void GetDestroyed(){
-        leader.follower = this.follower;
-        follower.leader = this.leader;  // this should fix that
+        if (this.leader != null){
+            leader.follower = this.follower;
+        }
+        if (this.follower != null){
+            follower.leader = this.leader;  // this should fix that
+        }
+        else{
+            // here drop powerup
+        }
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
         InterfaceSingleton.Instance.AddScore(killPrice);
