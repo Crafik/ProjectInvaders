@@ -29,44 +29,37 @@ public class StarsParticlesSingleton : MonoBehaviour
     }
 
     void Update(){
-        if (GameManagerSingleton.Instance.isGameActive){
-            if (m_particles.isPaused){
-                m_particles.Play(); // this may not work as i intent it to, need investigation
-            }
-            if (isChangingSpeed){
-                // Hope it wont break on me sometime in the future
-                ParticleSystem.Particle[] existingParticles = new ParticleSystem.Particle[m_particles.particleCount];
-                m_particles.GetParticles(existingParticles);
-                var main = m_particles.main;
-                if (isAccelerating){
-                    if (curSpeed < targetSpeed){
-                        curSpeed += Time.deltaTime * 10f;
-                    }
-                    else{
-                        isChangingSpeed = false;
-                    }
+        if (m_particles.isPaused){
+            m_particles.Play(); // this may not work as i intent it to, need investigation
+        }
+        if (isChangingSpeed){
+            // Hope it wont break on me sometime in the future
+            ParticleSystem.Particle[] existingParticles = new ParticleSystem.Particle[m_particles.particleCount];
+            m_particles.GetParticles(existingParticles);
+            var main = m_particles.main;
+            if (isAccelerating){
+                if (curSpeed < targetSpeed){
+                    curSpeed += Time.deltaTime * 10f;
                 }
                 else{
-                    if (curSpeed > targetSpeed){
-                        curSpeed -= Time.deltaTime * 10f;
-                    }
-                    else{
-                        isChangingSpeed = false;
-                    }
+                    isChangingSpeed = false;
                 }
-                main.startSpeed = curSpeed;
-                var emission = m_particles.emission;
-                emission.rateOverTime = curSpeed / 2;
-                for (int i = 0; i < existingParticles.Length; ++i){
-                    existingParticles[i].velocity = existingParticles[i].velocity.normalized * curSpeed;
+            }
+            else{
+                if (curSpeed > targetSpeed){
+                    curSpeed -= Time.deltaTime * 10f;
                 }
-                m_particles.SetParticles(existingParticles, existingParticles.Length);
+                else{
+                    isChangingSpeed = false;
+                }
             }
-        }
-        else{
-            if (!m_particles.isPaused){
-                m_particles.Pause();
+            main.startSpeed = curSpeed;
+            var emission = m_particles.emission;
+            emission.rateOverTime = curSpeed / 2;
+            for (int i = 0; i < existingParticles.Length; ++i){
+                existingParticles[i].velocity = existingParticles[i].velocity.normalized * curSpeed;
             }
+            m_particles.SetParticles(existingParticles, existingParticles.Length);
         }
     }
 }

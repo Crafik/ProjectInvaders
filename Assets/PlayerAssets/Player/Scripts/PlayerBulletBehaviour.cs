@@ -20,11 +20,9 @@ public class PlayerBulletBehaviour : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (GameManagerSingleton.Instance.isGameActive){
-            m_body.MovePosition(m_body.position + new Vector3(0f, 0f, 1f) * moveSpeed * Time.fixedDeltaTime);
-            if (m_body.position.z > 12f){
-                Destroy(gameObject);
-            }
+        m_body.MovePosition(m_body.position + new Vector3(0f, 0f, 1f) * moveSpeed * Time.fixedDeltaTime);
+        if (m_body.position.z > 12f){
+            Destroy(gameObject);
         }
     }
 }

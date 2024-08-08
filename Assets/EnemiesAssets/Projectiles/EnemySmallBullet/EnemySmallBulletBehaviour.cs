@@ -24,13 +24,11 @@ public class EnemySmallBulletBehaviour : EnemyProjectileBaseClass
     }
 
     void FixedUpdate(){
-        if (GameManagerSingleton.Instance.isGameActive){
-            m_Rigidbody.MovePosition(m_Rigidbody.position + moveSpeed * Time.fixedDeltaTime * targetDir);
+        m_Rigidbody.MovePosition(m_Rigidbody.position + moveSpeed * Time.fixedDeltaTime * targetDir);
 
-            if (m_Rigidbody.position.x > 15f || m_Rigidbody.position.x < -15f ||
-                m_Rigidbody.position.z > 12f || m_Rigidbody.position.z < -5f){
-                Destroy(gameObject);
-            }
+        if (m_Rigidbody.position.x > 15f || m_Rigidbody.position.x < -15f ||
+            m_Rigidbody.position.z > 12f || m_Rigidbody.position.z < -5f){
+            Destroy(gameObject);
         }
     }
 

@@ -49,18 +49,16 @@ public class LevelManager : MonoBehaviour
     }
 
     void Update(){
-        if (GameManagerSingleton.Instance.isGameActive){
-            if (listIterator < spawners.Count){
-                if (timer > spawners[listIterator].spawnTime){
-                    while (listIterator < spawners.Count && timer > spawners[listIterator].spawnTime){
-                        spawners[listIterator].SpawnEntity();
-                        listIterator += 1;
-                    }
+        if (listIterator < spawners.Count){
+            if (timer > spawners[listIterator].spawnTime){
+                while (listIterator < spawners.Count && timer > spawners[listIterator].spawnTime){
+                    spawners[listIterator].SpawnEntity();
+                    listIterator += 1;
                 }
             }
-            
-            timer += Time.deltaTime;
-            InterfaceSingleton.Instance.UpdateProgress(timer / 15f);
         }
+        
+        timer += Time.deltaTime;
+        InterfaceSingleton.Instance.UpdateProgress(timer / 15f);
     }
 }

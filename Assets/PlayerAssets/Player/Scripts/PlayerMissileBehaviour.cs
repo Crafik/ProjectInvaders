@@ -38,15 +38,13 @@ public class PlayerMissileBehaviour : PlayerBulletBehaviour
     }
 
     void FixedUpdate(){
-        if (GameManagerSingleton.Instance.isGameActive){
-            m_body.MovePosition(m_body.position + currentSpeed * Time.fixedDeltaTime * new Vector3(0f, 0f, 1f));
-            m_body.MoveRotation(m_body.rotation * Quaternion.Euler(new Vector3(0f, 0f, 18f)));
-            if (m_body.position.z > 12f){
-                DestroyMissile();
-            }
-            if (currentSpeed < moveSpeed){
-                currentSpeed += accelerationRate * Time.fixedDeltaTime;
-            }
+        m_body.MovePosition(m_body.position + currentSpeed * Time.fixedDeltaTime * new Vector3(0f, 0f, 1f));
+        m_body.MoveRotation(m_body.rotation * Quaternion.Euler(new Vector3(0f, 0f, 18f)));
+        if (m_body.position.z > 12f){
+            DestroyMissile();
+        }
+        if (currentSpeed < moveSpeed){
+            currentSpeed += accelerationRate * Time.fixedDeltaTime;
         }
     }
 }

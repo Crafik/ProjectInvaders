@@ -83,10 +83,10 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnMovePerformed(InputAction.CallbackContext ctx){
-        moveVector = ctx.ReadValue<Vector2>();
-        int moveSide = moveVector.x != 0 ? (moveVector.x > 0 ? 1 : -1) : 0; // looks ugly, should not be that impactfull though
-        m_anim.SetInteger("HorizontalMove", moveSide);
-        moveVector.Normalize();
+            moveVector = ctx.ReadValue<Vector2>();
+            int moveSide = moveVector.x != 0 ? (moveVector.x > 0 ? 1 : -1) : 0; // looks ugly, should not be that impactfull though
+            m_anim.SetInteger("HorizontalMove", moveSide);
+            moveVector.Normalize();
     }
 
     void OnFocusPerformed(InputAction.CallbackContext ctx){
@@ -156,9 +156,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator InvincibilityCoroutine(){
         float flickerTimer = 0.1f;
         while (invincibilityCounter > 0f){
-            if (GameManagerSingleton.Instance.isGameActive){
-                invincibilityCounter -= Time.deltaTime;
-            }
+            invincibilityCounter -= Time.deltaTime;
             if (invincibilityCounter < 1.5f){
                 if (flickerTimer < 0f){
                     shield.SetActive(!shield.activeSelf);
@@ -182,16 +180,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate(){
         // dunno if this is good, but kinematic does not collide with static colliders, so yeah
-        if (GameManagerSingleton.Instance.isGameActive){
-            if (isAlive){
-                m_body.velocity = new Vector3(moveVector.x, 0f, moveVector.y) * moveSpeed * (isFocused ? focusMultiplier : 1);
-                m_body.position = new Vector3(Mathf.Clamp(m_body.position.x, -9.5f, 9.5f),
-                                            0f,
-                                            Mathf.Clamp(m_body.position.z, -3.5f, 8f));
-            }
-        }
-        else{
-            m_body.velocity = Vector3.zero;
+        if (isAlive){
+            m_body.velocity = new Vector3(moveVector.x, 0f, moveVector.y) * moveSpeed * (isFocused ? focusMultiplier : 1);
+            m_body.position = new Vector3(Mathf.Clamp(m_body.position.x, -9.5f, 9.5f),
+                                        0f,
+                                        Mathf.Clamp(m_body.position.z, -3.5f, 8f));
         }
     }
 }

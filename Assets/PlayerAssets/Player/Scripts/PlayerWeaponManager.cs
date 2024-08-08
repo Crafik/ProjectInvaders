@@ -64,65 +64,63 @@ public class PlayerWeaponManager : MonoBehaviour
     private float cooldownCounter;
     private bool isHullGunsShooting;
     void Update(){
-        if(GameManagerSingleton.Instance.isGameActive){
-            if (isShooting){
-                if (cooldownCounter < 0){
-                    // after small refactor, still looks intimidating
-                    // dunno how to make it simpler without making it more complicated
-                    switch (powerLevel){
-                        case 0:
-                            shootMainGun(SmallBulletPrefab);
-                            break;
-                        case 1:
-                            shootMainGun(SmallBulletPrefab);
-                            shootHullGuns();
-                            break;
-                        case 2:
-                            shootMainGun(SmallBulletPrefab);
-                            if (isHullGunsShooting){
-                                isHullGunsShooting = false;
-                                shootHullGuns();
-                            }
-                            else{
-                                isHullGunsShooting = true;
-                                shootWingGuns(SmallBulletPrefab);
-                            }
-                            break;
-                        case 3:
-                            shootMainGun(SmallBulletPrefab);
-                            shootHullGuns();
-                            shootWingGuns(SmallBulletPrefab);
-                            break;
-                        case 4:
-                            shootMainGun(LargeBulletPrefab);
-                            shootHullGuns();
-                            shootWingGuns(SmallBulletPrefab);
-                            break;
-                        case 5:
-                            shootMainGun(LargeBulletPrefab);
-                            shootHullGuns();
-                            shootWingGuns(LargeBulletPrefab);
-                            break;
-                        case 6:
+        if (isShooting){
+            if (cooldownCounter < 0){
+                // after small refactor, still looks intimidating
+                // dunno how to make it simpler without making it more complicated
+                switch (powerLevel){
+                    case 0:
+                        shootMainGun(SmallBulletPrefab);
+                        break;
+                    case 1:
+                        shootMainGun(SmallBulletPrefab);
+                        shootHullGuns();
+                        break;
+                    case 2:
+                        shootMainGun(SmallBulletPrefab);
                         if (isHullGunsShooting){
-                                shootMainGun(MissilePrefab);
-                                isHullGunsShooting = false;
-                            }
-                            else{
-                                isHullGunsShooting = true;
-                            }
+                            isHullGunsShooting = false;
                             shootHullGuns();
-                            shootWingGuns(LargeBulletPrefab);
-                            break;
-                        default:
-                            return;
-                    }
-                    cooldownCounter = weaponsCooldown;
+                        }
+                        else{
+                            isHullGunsShooting = true;
+                            shootWingGuns(SmallBulletPrefab);
+                        }
+                        break;
+                    case 3:
+                        shootMainGun(SmallBulletPrefab);
+                        shootHullGuns();
+                        shootWingGuns(SmallBulletPrefab);
+                        break;
+                    case 4:
+                        shootMainGun(LargeBulletPrefab);
+                        shootHullGuns();
+                        shootWingGuns(SmallBulletPrefab);
+                        break;
+                    case 5:
+                        shootMainGun(LargeBulletPrefab);
+                        shootHullGuns();
+                        shootWingGuns(LargeBulletPrefab);
+                        break;
+                    case 6:
+                    if (isHullGunsShooting){
+                            shootMainGun(MissilePrefab);
+                            isHullGunsShooting = false;
+                        }
+                        else{
+                            isHullGunsShooting = true;
+                        }
+                        shootHullGuns();
+                        shootWingGuns(LargeBulletPrefab);
+                        break;
+                    default:
+                        return;
                 }
+                cooldownCounter = weaponsCooldown;
             }
-            if (cooldownCounter > 0){
-                cooldownCounter -= Time.deltaTime;
-            }
+        }
+        if (cooldownCounter > 0){
+            cooldownCounter -= Time.deltaTime;
         }
     }
 }

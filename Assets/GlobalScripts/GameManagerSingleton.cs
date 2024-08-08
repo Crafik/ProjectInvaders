@@ -11,10 +11,6 @@ public class GameManagerSingleton : MonoBehaviour
     [HideInInspector] public GameObject player;
     [HideInInspector] public bool isPlayerAlive;
 
-    // thinking about pause implementation
-    // changing timescale to 0 may not be a good solution for that
-    [HideInInspector] public bool isGameActive;
-
     private Controls m_controls;
 
     void Awake(){
@@ -26,7 +22,6 @@ public class GameManagerSingleton : MonoBehaviour
         }
 
         isPlayerAlive = true;
-        isGameActive = true;
 
         m_controls = new Controls();
     }
@@ -43,6 +38,6 @@ public class GameManagerSingleton : MonoBehaviour
 
     void PauseGame(InputAction.CallbackContext ctx){
         // There is like a whole lot to fix about this
-        isGameActive = !isGameActive;
+        // timescale it is i guess
     }
 }

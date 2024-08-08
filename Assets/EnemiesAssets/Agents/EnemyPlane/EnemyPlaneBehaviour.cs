@@ -90,23 +90,21 @@ public class EnemyPlaneBehaviour : BaseEnemy
     }
 
     void FixedUpdate(){
-        if (GameManagerSingleton.Instance.isGameActive){
-            moveDelegate();
-            if (GameManagerSingleton.Instance.isPlayerAlive){
-                if (Mathf.Abs(transform.position.x - GameManagerSingleton.Instance.player.transform.position.x) < 3f){
-                    if (shotCooldownCounter <= 0f){
-                        ShootAtPlayer();
-                        shotCooldownCounter = shotCooldown;
-                    }
+        moveDelegate();
+        if (GameManagerSingleton.Instance.isPlayerAlive){
+            if (Mathf.Abs(transform.position.x - GameManagerSingleton.Instance.player.transform.position.x) < 3f){
+                if (shotCooldownCounter <= 0f){
+                    ShootAtPlayer();
+                    shotCooldownCounter = shotCooldown;
                 }
             }
-            if (shotCooldownCounter > 0f){
-                shotCooldownCounter -= Time.fixedDeltaTime;
-            }
-            if (m_Rigidbody.position.x > 17f || m_Rigidbody.position.x < -17f ||
-                m_Rigidbody.position.z > 15f || m_Rigidbody.position.z < -7f){
-                Destroy(gameObject);
-            }
+        }
+        if (shotCooldownCounter > 0f){
+            shotCooldownCounter -= Time.fixedDeltaTime;
+        }
+        if (m_Rigidbody.position.x > 17f || m_Rigidbody.position.x < -17f ||
+            m_Rigidbody.position.z > 15f || m_Rigidbody.position.z < -7f){
+            Destroy(gameObject);
         }
     }
 }

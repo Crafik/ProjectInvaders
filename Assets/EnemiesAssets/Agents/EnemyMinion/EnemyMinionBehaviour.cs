@@ -45,28 +45,26 @@ public class EnemyMinionBehaviour : BaseEnemy
     private float dashTimer = 0.35f;
     void FixedUpdate(){
         // looks a bit ugly
-        if (GameManagerSingleton.Instance.isGameActive){
-            if (dashPos < -20f){
-                if (m_Rigidbody.position.z - GameManagerSingleton.Instance.player.transform.position.z < 2f){
-                    SendDashPos(m_Rigidbody.position.z, GameManagerSingleton.Instance.player.transform.position.x > m_Rigidbody.position.x);
-                }
-                m_Rigidbody.MovePosition(m_Rigidbody.position + moveSpeed * Time.fixedDeltaTime * Vector3.back);
+        if (dashPos < -20f){
+            if (m_Rigidbody.position.z - GameManagerSingleton.Instance.player.transform.position.z < 2f){
+                SendDashPos(m_Rigidbody.position.z, GameManagerSingleton.Instance.player.transform.position.x > m_Rigidbody.position.x);
+            }
+            m_Rigidbody.MovePosition(m_Rigidbody.position + moveSpeed * Time.fixedDeltaTime * Vector3.back);
+        }
+        else{
+            if (m_Rigidbody.position.z < dashPos && !isShifting){
+                isShifting = true;
+            }
+            if (isShifting && dashTimer > 0f){
+                m_Rigidbody.MovePosition(m_Rigidbody.position + moveSpeed * Time.fixedDeltaTime * new Vector3(shiftRight ? 1f : -1f, 0f, 1.5f));
+                dashTimer -= Time.fixedDeltaTime;
             }
             else{
-                if (m_Rigidbody.position.z < dashPos && !isShifting){
-                    isShifting = true;
-                }
-                if (isShifting && dashTimer > 0f){
-                    m_Rigidbody.MovePosition(m_Rigidbody.position + moveSpeed * Time.fixedDeltaTime * new Vector3(shiftRight ? 1f : -1f, 0f, 1.5f));
-                    dashTimer -= Time.fixedDeltaTime;
-                }
-                else{
-                    m_Rigidbody.MovePosition(m_Rigidbody.position + moveSpeed * Time.fixedDeltaTime * Vector3.back);
-                }
+                m_Rigidbody.MovePosition(m_Rigidbody.position + moveSpeed * Time.fixedDeltaTime * Vector3.back);
             }
-            if (m_Rigidbody.position.z < -5){
-                Destroy(gameObject);
-            }
+        }
+        if (m_Rigidbody.position.z < -5){
+            Destroy(gameObject);
         }
     }
 }

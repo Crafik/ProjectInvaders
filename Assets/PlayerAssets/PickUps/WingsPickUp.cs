@@ -28,15 +28,13 @@ public class WingsPickUp : MonoBehaviour, IPickable
 
     Vector3 velocity;
     void FixedUpdate(){
-        if (GameManagerSingleton.Instance.isGameActive){
-            m_Rigidbody.MovePosition(m_Rigidbody.position + velocity * Time.fixedDeltaTime);
-            if (velocity.z > -moveSpeed){
-                velocity -= moveSpeed * Time.fixedDeltaTime * Vector3.forward;  // feels weird, probably need some tweaking, but works at the time
-            }
+        m_Rigidbody.MovePosition(m_Rigidbody.position + velocity * Time.fixedDeltaTime);
+        if (velocity.z > -moveSpeed){
+            velocity -= moveSpeed * Time.fixedDeltaTime * Vector3.forward;  // feels weird, probably need some tweaking, but works at the time
+        }
 
-            if (m_Rigidbody.position.z < -5.5f){
-                Destroy(gameObject);
-            }
+        if (m_Rigidbody.position.z < -5.5f){
+            Destroy(gameObject);
         }
     }
 }

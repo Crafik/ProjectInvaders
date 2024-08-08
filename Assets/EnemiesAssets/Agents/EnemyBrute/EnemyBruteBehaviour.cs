@@ -99,13 +99,11 @@ public class EnemyBruteBehaviour : BaseEnemy
     }
 
     void FixedUpdate(){
-        if (GameManagerSingleton.Instance.isGameActive){
-            actionDelegate();
+        actionDelegate();
 
-            if (m_Rigidbody.position.x > 17f || m_Rigidbody.position.x < -17f ||
-                m_Rigidbody.position.z > 15f || m_Rigidbody.position.z < -7f){
-                Destroy(gameObject);
-            }
+        if (m_Rigidbody.position.x > 17f || m_Rigidbody.position.x < -17f ||
+            m_Rigidbody.position.z > 15f || m_Rigidbody.position.z < -7f){
+            Destroy(gameObject);
         }
     }
 }
