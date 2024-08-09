@@ -54,7 +54,10 @@ MonoBehaviour:
   killPrice: 100
   explosionPrefab: {fileID: 8091828256370219255, guid: 32733c7aaef9b41458e56cdd1d7f7e09,
     type: 3}
+  playerPowerUpPrefab: {fileID: 7099054023609278824, guid: 18f0d4cb8218d29478953bfe446d663b,
+    type: 3}
   follower: {fileID: 0}
+  leader: {fileID: 0}
 --- !u!54 &2904045444898539701
 Rigidbody:
   m_ObjectHideFlags: 0

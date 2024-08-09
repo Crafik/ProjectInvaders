@@ -1,3 +1,8 @@
+public enum PlayerPickUpType{
+    powerUp,
+    extraLife
+}
+
 public interface IPickable{
     /// <summary>
     /// Type of pickable:
@@ -5,7 +10,7 @@ public interface IPickable{
     /// 1 - extra life;
     /// 2 - ???
     /// </summary>
-    public int type { get; }
+    public PlayerPickUpType type { get; }
 
     public int GetPicked();
 

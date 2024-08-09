@@ -13,6 +13,7 @@ public class EnemyMinionBehaviour : BaseEnemy
     [Space (10)]
     [Header ("===== Prefabs =====")]
     [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private GameObject playerPowerUpPrefab;
 
     [HideInInspector] public EnemyMinionBehaviour follower;
     [HideInInspector] public EnemyMinionBehaviour leader;
@@ -25,7 +26,7 @@ public class EnemyMinionBehaviour : BaseEnemy
             follower.leader = this.leader;  // this should fix that
         }
         else{
-            // here drop powerup
+            Instantiate(playerPowerUpPrefab, transform.position, Quaternion.identity);
         }
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
