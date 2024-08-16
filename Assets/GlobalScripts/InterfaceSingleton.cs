@@ -9,14 +9,27 @@ public class InterfaceSingleton : MonoBehaviour
     public static InterfaceSingleton Instance { get; private set;}
 
     [Header ("===== Children =====")]
-    [SerializeField] private TextMeshProUGUI currentScoreText;
+    [Header (" -= Left Column =- ")]
     [SerializeField] private RectTransform playerIcon;
     [SerializeField] private RectTransform startPoint;
     [SerializeField] private RectTransform approachPoint;
     [SerializeField] private RectTransform finalDestinationPoint;
 
+    [Space (3)]
+    [Header (" -= Right Column =- ")]
+    [SerializeField] private TextMeshProUGUI currentScoreText;
+    [SerializeField] private TextMeshProUGUI bestScoreText;
+    [Header ("Lives counter")]
+    [SerializeField] private GameObject livesCounter;
+    [SerializeField] private TextMeshProUGUI livesOverflowCounter;
+    [Header ("Bombs counter")]
+    [SerializeField] private GameObject bombsCounter;
+    [Header ("Power counter")]
+    [SerializeField] private TextMeshProUGUI powerLevelCounter;
+    [SerializeField] private TextMeshProUGUI maxPowerPlug;
+
     private int displayedScore;
-    private int currentScore;   // have a feeling that it may be better to store currentScore in manager rather than here
+    public int currentScore { get; private set; }   // have a feeling that it may be better to store currentScore in manager rather than here
 
     private Coroutine countingCoroutine;
 
@@ -30,6 +43,24 @@ public class InterfaceSingleton : MonoBehaviour
         }
     }
 
+
+#region Left column business
+    private Vector3 destinationPos;
+
+    /// <summary>
+    /// Sets destination point for player icon on HUD
+    /// </summary>
+    /// <param name="approach">Sets destination point to approach if true.<br />Sets to destination otherwise.</param>
+    public void SetDestinationPos(bool approach){
+        destinationPos = approach ? approachPoint.position : finalDestinationPoint.position;
+    }
+
+    public void UpdateProgress(float progress){
+        playerIcon.position = Vector3.Lerp(startPoint.position, destinationPos, progress);
+    }
+#endregion
+
+#region Right column business
 #region Score business
 
     public void SetScore(int score){
@@ -114,20 +145,40 @@ public class InterfaceSingleton : MonoBehaviour
 
 #endregion
 
+    public void SetLivesCounter(int lives){
+        // ¯\_(ツ)_/¯
+        for (int i = 0; i < 5; ++i){
+            livesCounter.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        livesOverflowCounter.text = "";
+        if (lives < 6){
+            for (int i = 0; i < lives; ++i){
+                livesCounter.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+        else{
+            for (int i = 0; i < 3; ++i){
+                livesCounter.transform.GetChild(i).gameObject.SetActive(true);
+            }
+            livesOverflowCounter.text = "+" + (lives - 3).ToString();
+        }
+    }
+    // on first glance works, needs testing
 
-    private Vector3 destinationPos;
-
-    /// <summary>
-    /// Sets destination point for player icon on HUD
-    /// </summary>
-    /// <param name="approach">Sets destination point to approach if true.<br />Sets to destination otherwise.</param>
-    public void SetDestinationPos(bool approach){
-        destinationPos = approach ? approachPoint.position : finalDestinationPoint.position;
+    public void SetPowerCounter(int level){
+        powerLevelCounter.text = "";
+        maxPowerPlug.text = "";
+        if (level < 6){
+            for (int i = 0; i < level; ++i){
+                powerLevelCounter.text += "i";
+            }
+        }
+        else{
+            maxPowerPlug.text = "max";
+        }
     }
 
-    public void UpdateProgress(float progress){
-        playerIcon.position = Vector3.Lerp(startPoint.position, destinationPos, progress);
-    }
+#endregion
 
     // Update is called once per frame
     void Update()

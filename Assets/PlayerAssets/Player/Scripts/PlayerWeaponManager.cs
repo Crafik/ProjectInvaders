@@ -18,18 +18,24 @@ public class PlayerWeaponManager : MonoBehaviour
     [SerializeField] private float weaponsCooldown;
 
     [HideInInspector] public int powerLevel { get; private set; }    // Need to think through the powerup system
+    [HideInInspector] public int maxPowerLevel { get; private set; }
 
     private bool isShooting;
 
     void Awake(){
         cooldownCounter = weaponsCooldown;
         isHullGunsShooting = true;
-        SetPowerLevel(0);
+        maxPowerLevel = 6;
         isShooting = false;
     }
 
+    void Start(){
+        SetPowerLevel(0);
+    }
+
     public void SetPowerLevel(int level){
-        if (level > 6){ // this is not nice
+        InterfaceSingleton.Instance.SetPowerCounter(level);
+        if (level > maxPowerLevel){ // this is not nice
             return;
         }
         powerLevel = level;

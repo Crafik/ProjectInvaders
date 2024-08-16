@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isShooting;
 
+    private int livesCounter;
     private bool isAlive;
     private float invincibilityCounter;
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
         isFocused = false;
         isAlive = true;
+        livesCounter = 8;
         invincibilityCounter = -1f;
         shield.SetActive(false);
     }
@@ -72,6 +74,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // sumthin go here probably
+        InterfaceSingleton.Instance.SetLivesCounter(livesCounter);
     }
 
     public void PowerUp(){
@@ -104,8 +107,22 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider collision){
         if (collision.CompareTag("Pickable")){
-            weapons.SetPowerLevel(weapons.powerLevel + collision.GetComponent<IPickable>().GetPicked());
+            int scoreToAdd = 0;
+            switch (collision.GetComponent<IPickable>().type){
+                case PlayerPickUpType.powerUp:
+                    weapons.SetPowerLevel(weapons.powerLevel + collision.GetComponent<IPickable>().GetPicked());
+                    scoreToAdd = weapons.powerLevel == weapons.maxPowerLevel ? 1200 : 200;
+                    break;
+                case PlayerPickUpType.extraLife:
+                    // here be code
+                    break;
+                default:
+                    // here probably be safestate(+1000 points)
+                    scoreToAdd = 1000;
+                    break;
+            }
             // here be score addition
+            InterfaceSingleton.Instance.AddScore(scoreToAdd);
         }
         if (collision.CompareTag("Enemy")){
             collision.GetComponent<IDamageable>().GetDamage(10);
@@ -114,11 +131,14 @@ public class PlayerController : MonoBehaviour
     }
 
     public void PlayerDeath(){
-        // here be player death handler
-        // sidenote: don't forget about wingsPickup
         if (isAlive && invincibilityCounter < 0f){
             isAlive = false;
             GameManagerSingleton.Instance.isPlayerAlive = false;
+            if (livesCounter > 0){
+                // testing grounds
+                livesCounter -= 1;
+                InterfaceSingleton.Instance.SetLivesCounter(livesCounter);
+            }
             Vector3 pos = m_body.position;
             m_body.velocity = Vector3.zero;
             m_body.position = new Vector3(m_body.position.x, 0f, -6f);
