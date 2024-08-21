@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InterfaceSingleton : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class InterfaceSingleton : MonoBehaviour
     [Header ("Power counter")]
     [SerializeField] private TextMeshProUGUI powerLevelCounter;
     [SerializeField] private TextMeshProUGUI maxPowerPlug;
+
+    [Space (3)]
+    [SerializeField] private Image bombFadeIn;
 
     private int displayedScore;
     public int currentScore { get; private set; }   // have a feeling that it may be better to store currentScore in manager rather than here
@@ -163,7 +167,6 @@ public class InterfaceSingleton : MonoBehaviour
             livesOverflowCounter.text = "+" + (lives - 3).ToString();
         }
     }
-    // on first glance works, needs testing
 
     public void SetPowerCounter(int level){
         powerLevelCounter.text = "";
@@ -178,7 +181,26 @@ public class InterfaceSingleton : MonoBehaviour
         }
     }
 
+    public void SetBombsCounter(int count){
+        if (count > -1 && count < 6){
+            for (int i = 0; i < 5; ++i){
+                bombsCounter.transform.GetChild(i).gameObject.SetActive(false);
+            }
+            for (int i = 0; i < count; i++){
+                bombsCounter.transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+    }
+
 #endregion
+
+    public void SetBombFadeIn(float value){
+        bombFadeIn.color = new Color(1f, 1f, 1f, value);
+    }
+
+    public void ResetBombFadeIn(){
+        SetBombFadeIn(0f);
+    }
 
     // Update is called once per frame
     void Update()

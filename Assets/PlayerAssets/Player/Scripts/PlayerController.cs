@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [Header ("===== Prefabs =====")]
     [SerializeField] private GameObject PlayerExplosion;
     [SerializeField] private GameObject WingsPickUp;
+    [SerializeField] private GameObject BombExplosion;
 
     [Space (10)]
     [Header ("===== Variables =====")]
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     private bool isShooting;
 
+    private int bombsCounter;
+
     private int livesCounter;
     private bool isAlive;
     private float invincibilityCounter;
@@ -44,7 +47,8 @@ public class PlayerController : MonoBehaviour
 
         isFocused = false;
         isAlive = true;
-        livesCounter = 8;
+        livesCounter = 3;
+        bombsCounter = 2;
         invincibilityCounter = -1f;
         shield.SetActive(false);
     }
@@ -58,6 +62,7 @@ public class PlayerController : MonoBehaviour
         m_controls.Player.Focus.canceled += OnFocusPerformed;
         m_controls.Player.Shoot.performed += OnShootPerformed;
         m_controls.Player.Shoot.canceled += OnShootPerformed;
+        m_controls.Player.Bomb.performed += OnBombPerformed;
     }
 
     void OnDisable(){
@@ -69,12 +74,14 @@ public class PlayerController : MonoBehaviour
         m_controls.Player.Focus.canceled -= OnFocusPerformed;
         m_controls.Player.Shoot.performed -= OnShootPerformed;
         m_controls.Player.Shoot.canceled -= OnShootPerformed;
+        m_controls.Player.Bomb.performed -= OnBombPerformed;
     }
 
     void Start()
     {
         // sumthin go here probably
         InterfaceSingleton.Instance.SetLivesCounter(livesCounter);
+        InterfaceSingleton.Instance.SetBombsCounter(bombsCounter);
     }
 
     public void PowerUp(){
@@ -101,6 +108,41 @@ public class PlayerController : MonoBehaviour
         isShooting = ctx.performed;
     }
 
+    void OnBombPerformed(InputAction.CallbackContext ctx){
+        if (bombsCounter > 0){
+            bombsCounter -= 1;
+            InterfaceSingleton.Instance.SetBombsCounter(bombsCounter);
+            invincibilityCounter = 0.7f;
+            StartCoroutine(BombCoroutine());
+        }
+    }
+
+    IEnumerator BombCoroutine(){
+        var bombFX = Instantiate(BombExplosion, transform);
+        while (invincibilityCounter > 0f){
+            if (Time.timeScale > 0.4f){
+                Time.timeScale -= Time.deltaTime;
+            }
+            float sizeLerp = Mathf.Lerp(0f, 15f, 1f - (invincibilityCounter / 0.7f));
+            bombFX.transform.localScale = Vector3.one * sizeLerp;
+            InterfaceSingleton.Instance.SetBombFadeIn(1f - (invincibilityCounter / 0.7f));
+            invincibilityCounter -= Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        Collider[] colliders = Physics.OverlapBox(new Vector3(0f, 0f, 2f), new Vector3(10f, 2f, 6f));
+        foreach (Collider c in colliders){
+            if (c.CompareTag("Enemy")){
+                c.GetComponent<IDamageable>().GetDamage(50);
+            }
+            if (c.CompareTag("EnemyProjectile")){
+                Destroy(c.gameObject);
+            }
+        }
+        InterfaceSingleton.Instance.ResetBombFadeIn();
+        Time.timeScale = 1f;
+        Destroy(bombFX);
+    }
+
     void OnCollisionEnter(Collision collision){
         Debug.Log("Collided!");
     }
@@ -112,6 +154,11 @@ public class PlayerController : MonoBehaviour
                 case PlayerPickUpType.powerUp:
                     weapons.SetPowerLevel(weapons.powerLevel + collision.GetComponent<IPickable>().GetPicked());
                     scoreToAdd = weapons.powerLevel == weapons.maxPowerLevel ? 1200 : 200;
+                    break;
+                case PlayerPickUpType.bomb:
+                    bombsCounter += 1;
+                    collision.GetComponent<IPickable>().GetPicked();
+                    InterfaceSingleton.Instance.SetBombsCounter(bombsCounter);
                     break;
                 case PlayerPickUpType.extraLife:
                     // here be code
@@ -136,6 +183,8 @@ public class PlayerController : MonoBehaviour
             GameManagerSingleton.Instance.isPlayerAlive = false;
             if (livesCounter > 0){
                 // testing grounds
+                // gameover would be done with implementation of menus
+                // probably
                 livesCounter -= 1;
                 InterfaceSingleton.Instance.SetLivesCounter(livesCounter);
             }

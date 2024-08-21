@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3527888051526739695}
-  - component: {fileID: 3251352932088561087}
+  - component: {fileID: 4546945843912290171}
   - component: {fileID: 2471347513514213570}
   - component: {fileID: 3391611694897083191}
   m_Layer: 10
-  m_Name: powerUpPrefab
+  m_Name: PowerUpPrefab
   m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 329611063547915960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3251352932088561087
+--- !u!114 &4546945843912290171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,12 +44,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7099054023609278824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6759e351d8896c044bfd1ca8e5a06d47, type: 3}
+  m_Script: {fileID: 11500000, guid: 14115168f5078cc4790af79b1cb3b705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Rigidbody: {fileID: 2471347513514213570}
-  mesh: {fileID: 1141894676681307138}
   moveSpeed: 4
+  m_type: 0
+  value: 1
 --- !u!54 &2471347513514213570
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -204,12 +205,6 @@ PrefabInstance:
 --- !u!4 &329611063547915960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bde526eb1a386b84bb0748fea3db52c9,
-    type: 3}
-  m_PrefabInstance: {fileID: 223415236927064403}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1141894676681307138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bde526eb1a386b84bb0748fea3db52c9,
     type: 3}
   m_PrefabInstance: {fileID: 223415236927064403}
   m_PrefabAsset: {fileID: 0}

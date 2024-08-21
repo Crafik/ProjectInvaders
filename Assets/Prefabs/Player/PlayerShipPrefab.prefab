@@ -242,6 +242,8 @@ MonoBehaviour:
     type: 3}
   WingsPickUp: {fileID: 2031889606067223078, guid: 755aae0a980826049a18c9ce8ee18fff,
     type: 3}
+  BombExplosion: {fileID: 8857648561566817628, guid: 2ccce64b75c7bf44a862359cdafa2e87,
+    type: 3}
   recoveryPeriod: 1
   moveSpeed: 10
   focusMultiplier: 0.5
