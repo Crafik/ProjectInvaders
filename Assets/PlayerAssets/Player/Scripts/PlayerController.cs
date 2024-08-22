@@ -161,7 +161,9 @@ public class PlayerController : MonoBehaviour
                     InterfaceSingleton.Instance.SetBombsCounter(bombsCounter);
                     break;
                 case PlayerPickUpType.extraLife:
-                    // here be code
+                    livesCounter += 1;
+                    collision.GetComponent<IPickable>().GetPicked(); // That's just silly. Would probably be better with another implementation. ¯\_(ツ)_/¯
+                    InterfaceSingleton.Instance.SetLivesCounter(livesCounter);
                     break;
                 default:
                     // here probably be safestate(+1000 points)
@@ -178,26 +180,27 @@ public class PlayerController : MonoBehaviour
     }
 
     public void PlayerDeath(){
+        // TODO: Health drops and game over(rough estimate)
         if (isAlive && invincibilityCounter < 0f){
+            livesCounter -= 1;
             isAlive = false;
             GameManagerSingleton.Instance.isPlayerAlive = false;
-            if (livesCounter > 0){
-                // testing grounds
-                // gameover would be done with implementation of menus
-                // probably
-                livesCounter -= 1;
-                InterfaceSingleton.Instance.SetLivesCounter(livesCounter);
-            }
             Vector3 pos = m_body.position;
             m_body.velocity = Vector3.zero;
             m_body.position = new Vector3(m_body.position.x, 0f, -6f);
             Instantiate(PlayerExplosion, pos, Quaternion.identity);
             weapons.Shoot(false); // this is wrong =(
-            if (weapons.powerLevel > 1){
-                Instantiate(WingsPickUp, pos, Quaternion.identity);
+            if (livesCounter > 0){
+                InterfaceSingleton.Instance.SetLivesCounter(livesCounter);
+                if (weapons.powerLevel > 1){
+                    Instantiate(WingsPickUp, pos, Quaternion.identity);
+                }
+                SetPowerLevel(0);
+                StartCoroutine(RespawnCoroutine());
             }
-            SetPowerLevel(0);
-            StartCoroutine(RespawnCoroutine());
+            else{
+                // here be game over
+            }
         }
     }
 
