@@ -40,12 +40,18 @@ public class GameManagerSingleton : MonoBehaviour
 
     void PauseGame(InputAction.CallbackContext ctx){
         if (isGamePaused){
+            InterfaceSingleton.Instance.DestroyMenu();
             Time.timeScale = 1f;
             isGamePaused = false;
         }
         else{
+            InterfaceSingleton.Instance.CallMenu();
             Time.timeScale = 0f;
             isGamePaused = true;
         }
+    }
+
+    public void FlipPauseState(){
+        PauseGame(new InputAction.CallbackContext());
     }
 }

@@ -32,6 +32,10 @@ public class InterfaceSingleton : MonoBehaviour
     [Space (3)]
     [SerializeField] private Image bombFadeIn;
 
+    [Space(10)]
+    [Header ("===== Prefabs =====")]
+    [SerializeField] private GameObject menuPrefab;
+
     private int displayedScore;
     public int currentScore { get; private set; }   // have a feeling that it may be better to store currentScore in manager rather than here
 
@@ -200,6 +204,20 @@ public class InterfaceSingleton : MonoBehaviour
 
     public void ResetBombFadeIn(){
         SetBombFadeIn(0f);
+    }
+
+
+    private GameObject v_menu;
+    public void CallMenu(){
+        if (v_menu == null){
+            v_menu = Instantiate(menuPrefab, transform);
+        }
+    }
+
+    public void DestroyMenu(){
+        if (v_menu != null){
+            Destroy(v_menu);
+        }
     }
 
     // Update is called once per frame

@@ -183,15 +183,18 @@ public class PlayerController : MonoBehaviour
         // TODO: Health drops and game over(rough estimate)
         if (isAlive && invincibilityCounter < 0f){
             livesCounter -= 1;
+            InterfaceSingleton.Instance.SetLivesCounter(livesCounter);
             isAlive = false;
             GameManagerSingleton.Instance.isPlayerAlive = false;
+
             Vector3 pos = m_body.position;
             m_body.velocity = Vector3.zero;
             m_body.position = new Vector3(m_body.position.x, 0f, -6f);
+
             Instantiate(PlayerExplosion, pos, Quaternion.identity);
             weapons.Shoot(false); // this is wrong =(
-            if (livesCounter > 0){
-                InterfaceSingleton.Instance.SetLivesCounter(livesCounter);
+            
+            if (livesCounter > -1){
                 if (weapons.powerLevel > 1){
                     Instantiate(WingsPickUp, pos, Quaternion.identity);
                 }

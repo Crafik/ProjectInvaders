@@ -961,6 +961,8 @@ MonoBehaviour:
   powerLevelCounter: {fileID: 1327475717}
   maxPowerPlug: {fileID: 2024956967}
   bombFadeIn: {fileID: 1087161909}
+  menuPrefab: {fileID: 7751747344132630370, guid: ac7e445f205389742ba84ef6b10962bf,
+    type: 3}
 --- !u!1 &657891412
 GameObject:
   m_ObjectHideFlags: 0
