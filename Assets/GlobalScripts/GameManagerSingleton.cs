@@ -10,6 +10,7 @@ public class GameManagerSingleton : MonoBehaviour
 
     [HideInInspector] public GameObject player;
     [HideInInspector] public bool isPlayerAlive;
+    [HideInInspector] public bool isGameActive;
     [HideInInspector] public bool isGamePaused;
 
     private Controls m_controls;
@@ -40,9 +41,11 @@ public class GameManagerSingleton : MonoBehaviour
 
     void PauseGame(InputAction.CallbackContext ctx){
         if (isGamePaused){
-            InterfaceSingleton.Instance.DestroyMenu();
-            Time.timeScale = 1f;
-            isGamePaused = false;
+            if (isGameActive){ // ??? hmmm
+                InterfaceSingleton.Instance.DestroyMenu();
+                Time.timeScale = 1f;
+                isGamePaused = false;
+            }
         }
         else{
             InterfaceSingleton.Instance.CallMenu();
