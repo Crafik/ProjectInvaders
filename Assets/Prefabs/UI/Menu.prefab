@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 5909219035711566577}
   - component: {fileID: 7031789080841644074}
   - component: {fileID: 7444343359471648565}
+  - component: {fileID: 9044555385497792852}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -225,6 +226,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &9044555385497792852
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2989090062809117869}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d4de7446b24d8c46b095820aa6c3155, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3721724122082356763
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +528,7 @@ GameObject:
   - component: {fileID: 356151126200568530}
   - component: {fileID: 379603135490742437}
   - component: {fileID: 5773469376055506885}
+  - component: {fileID: 2818643029445045191}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -585,6 +608,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &2818643029445045191
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4874763804748110915}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ec2d44ffe975b54dbd4145a37b58c5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5376543582052657827
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,6 +813,7 @@ GameObject:
   - component: {fileID: 534071452238711472}
   - component: {fileID: 3917410223141934532}
   - component: {fileID: 8739177934223884693}
+  - component: {fileID: 1170856119630783371}
   m_Layer: 5
   m_Name: NewGameButton
   m_TagString: Untagged
@@ -848,6 +893,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &1170856119630783371
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7689033504646934881}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b362885cbf905a94cbc7736a35d94943, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7751747344132630370
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +975,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db015d07f90c71499acdf21002a9093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  continueButton: {fileID: 7444343359471648565}
+  newGameButton: {fileID: 8739177934223884693}
+  exitButton: {fileID: 5773469376055506885}
+  contCount: {fileID: 2612998206710630895}
 --- !u!114 &3831670605477404115
 MonoBehaviour:
   m_ObjectHideFlags: 0

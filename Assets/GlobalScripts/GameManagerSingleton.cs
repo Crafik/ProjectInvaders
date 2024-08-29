@@ -25,6 +25,7 @@ public class GameManagerSingleton : MonoBehaviour
 
         isPlayerAlive = true;
         isGamePaused = false;
+        isGameActive = true;
 
         m_controls = new Controls();
     }
