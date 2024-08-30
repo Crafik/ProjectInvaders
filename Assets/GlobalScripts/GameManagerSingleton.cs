@@ -12,6 +12,7 @@ public class GameManagerSingleton : MonoBehaviour
     [HideInInspector] public bool isPlayerAlive;
     [HideInInspector] public bool isGameActive;
     [HideInInspector] public bool isGamePaused;
+    private bool isInFocus;
 
     private Controls m_controls;
 
@@ -26,6 +27,7 @@ public class GameManagerSingleton : MonoBehaviour
         isPlayerAlive = true;
         isGamePaused = false;
         isGameActive = true;
+        isInFocus = true;
 
         m_controls = new Controls();
     }
@@ -41,21 +43,28 @@ public class GameManagerSingleton : MonoBehaviour
     }
 
     void PauseGame(InputAction.CallbackContext ctx){
-        if (isGamePaused){
-            if (isGameActive){ // ??? hmmm
-                InterfaceSingleton.Instance.DestroyMenu();
-                Time.timeScale = 1f;
-                isGamePaused = false;
+        if (isInFocus){
+            if (isGamePaused){
+                if (isGameActive){ // ??? hmmm
+                    InterfaceSingleton.Instance.DestroyMenu();
+                    Time.timeScale = 1f;
+                    isGamePaused = false;
+                    isInFocus = true; // redundant, may remove later
+                }
             }
-        }
-        else{
-            InterfaceSingleton.Instance.CallMenu();
-            Time.timeScale = 0f;
-            isGamePaused = true;
+            else{
+                InterfaceSingleton.Instance.CallMenu();
+                Time.timeScale = 0f;
+                isGamePaused = true;
+                isInFocus = false;
+            }
         }
     }
 
     public void FlipPauseState(){
+        if (!isInFocus){
+            isInFocus = true;
+        }
         PauseGame(new InputAction.CallbackContext());
     }
 }
