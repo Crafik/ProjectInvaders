@@ -13,19 +13,20 @@ public class ConfirmPanelScript : MonoBehaviour
     public static event Action<bool> confirmEvent;
 
     [Header ("===== Children =====")]
-    [SerializeField] private Button noButton;
-    [SerializeField] private Button yesButton;
+    [SerializeField] private CustomButton noButton;
+    [SerializeField] private CustomButton yesButton;
     [SerializeField] private TextMeshProUGUI label;
 
     private bool noButtonSelected;
 
     private Controls m_controls;
 
+    private bool isInFocus;
+
     void Awake(){
         m_controls = new Controls();
 
-        noButtonSelected = true;
-        noButton.Select();
+        isInFocus = false;
     }
 
     public void Init(string v_text){
@@ -50,11 +51,13 @@ public class ConfirmPanelScript : MonoBehaviour
 
     void NavigationPressed(InputAction.CallbackContext ctx){
         if (noButtonSelected){
-            yesButton.Select();
+            yesButton.SelectButton();
+            noButton.DeselectButton();
             noButtonSelected = false;
         }
         else{
-            noButton.Select();
+            yesButton.DeselectButton();
+            noButton.SelectButton();
             noButtonSelected = true;
         }
     }
@@ -64,7 +67,17 @@ public class ConfirmPanelScript : MonoBehaviour
     }
 
     void ConfirmPressed(InputAction.CallbackContext ctx){
-        (noButtonSelected ? noButton : yesButton).onClick.Invoke();
+        (noButtonSelected ? noButton : yesButton).PressButton();
+    }
+
+    public void AnimEnded(){
+        noButton.SetPositions();
+        yesButton.SetPositions();
+
+        noButtonSelected = true;
+        noButton.SelectButton();
+
+        isInFocus = true;
     }
 
     public void noButtonPressed(){

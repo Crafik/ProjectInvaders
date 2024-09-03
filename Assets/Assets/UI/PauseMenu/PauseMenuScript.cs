@@ -9,9 +9,9 @@ using UnityEngine.UI;
 public class PauseMenuScript : MonoBehaviour
 {
     [Header ("===== Children =====")]
-    [SerializeField] private Button continueButton;
-    [SerializeField] private Button newGameButton;
-    [SerializeField] private Button exitButton;
+    [SerializeField] private CustomButton continueButton;
+    [SerializeField] private CustomButton newGameButton;
+    [SerializeField] private CustomButton exitButton;
     [SerializeField] private TextMeshProUGUI contCount;
 
     [Space (10)]
@@ -20,17 +20,13 @@ public class PauseMenuScript : MonoBehaviour
 
     private Controls m_controls;
 
-    private Button[] buttonsArray;
+    private CustomButton[] buttonsArray;
     private int currentSelectedButton;
 
     private bool isInFocus;
 
     void Awake(){
-        buttonsArray = new Button[]{continueButton, newGameButton, exitButton};
-
-        foreach (Button b in buttonsArray){
-            b.enabled = false;
-        }
+        buttonsArray = new CustomButton[]{continueButton, newGameButton, exitButton};
 
         m_controls = new Controls();
 
@@ -60,7 +56,7 @@ public class PauseMenuScript : MonoBehaviour
     void NavigationPressed(InputAction.CallbackContext ctx){
         if (isInFocus){
             Vector2 val = ctx.ReadValue<Vector2>();
-
+            int previousSelectedButton = currentSelectedButton;
             if (val.y == 0){
                 return;
             }
@@ -74,7 +70,8 @@ public class PauseMenuScript : MonoBehaviour
                     currentSelectedButton += 1;
                 }
             }
-            buttonsArray[currentSelectedButton].Select();
+            buttonsArray[previousSelectedButton].DeselectButton();
+            buttonsArray[currentSelectedButton].SelectButton();
         }
     }
 
@@ -86,17 +83,17 @@ public class PauseMenuScript : MonoBehaviour
 
     void ConfirmPressed(InputAction.CallbackContext ctx){
         if (isInFocus){
-            buttonsArray[currentSelectedButton].onClick.Invoke();
+            buttonsArray[currentSelectedButton].PressButton();
         }
     }
     
     public void AnimEnded(){
         // here be code
-        foreach (Button b in buttonsArray){
-            b.enabled = true;
+        foreach (CustomButton b in buttonsArray){
+            b.SetPositions();
         }
         currentSelectedButton = 0;
-        buttonsArray[currentSelectedButton].Select();
+        buttonsArray[currentSelectedButton].SelectButton();
 
         isInFocus = true;
     }
@@ -130,7 +127,6 @@ public class PauseMenuScript : MonoBehaviour
         else{
             Debug.Log("NoNewgame");
             isInFocus = true;
-            buttonsArray[currentSelectedButton].Select();
         }
     }
 
@@ -151,7 +147,6 @@ public class PauseMenuScript : MonoBehaviour
         else{
             Debug.Log("NoExit");
             isInFocus = true;
-            buttonsArray[currentSelectedButton].Select();
         }
     }
 }

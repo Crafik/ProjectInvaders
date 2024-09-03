@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 1340263}
   - component: {fileID: 1340265}
   - component: {fileID: 1340264}
+  - component: {fileID: 1340266}
   m_Layer: 5
   m_Name: Music
   m_TagString: Untagged
@@ -179,7 +180,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -212,6 +213,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340262}
   m_CullTransparentMesh: 1
+--- !u!114 &1340266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3c3fb9cdfdf1d4f899a5e082c96026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnRightSide: 0
 --- !u!1 &144440667
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +237,6 @@ GameObject:
   - component: {fileID: 144440671}
   - component: {fileID: 144440670}
   - component: {fileID: 144440669}
-  - component: {fileID: 144440668}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -231,23 +244,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &144440668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144440667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &144440669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,6 +922,7 @@ GameObject:
   - component: {fileID: 760441139}
   - component: {fileID: 760441141}
   - component: {fileID: 760441140}
+  - component: {fileID: 760441142}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -972,7 +969,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1005,6 +1002,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760441138}
   m_CullTransparentMesh: 1
+--- !u!114 &760441142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760441138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3c3fb9cdfdf1d4f899a5e082c96026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnRightSide: 0
 --- !u!1001 &762524775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1141,7 +1151,7 @@ Light:
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -6563,6 +6573,7 @@ GameObject:
   - component: {fileID: 1694491074}
   - component: {fileID: 1694491076}
   - component: {fileID: 1694491075}
+  - component: {fileID: 1694491077}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -6609,7 +6620,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -6642,6 +6653,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1694491073}
   m_CullTransparentMesh: 1
+--- !u!114 &1694491077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694491073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3c3fb9cdfdf1d4f899a5e082c96026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnRightSide: 0
 --- !u!1 &1720162882
 GameObject:
   m_ObjectHideFlags: 0
@@ -6808,6 +6832,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_particles: {fileID: 1008118471}
   moon: {fileID: 605358997}
+  newGameButton: {fileID: 1694491077}
+  optionsButton: {fileID: 2013258729}
+  leaderboardButton: {fileID: 2135660761}
+  musicButton: {fileID: 1340266}
+  exitButton: {fileID: 760441142}
+  confirmPanelPrefab: {fileID: 2116629319887271660, guid: 9c4f2ac8a54092243a4e711cd66b6a47,
+    type: 3}
 --- !u!4 &1798804923
 Transform:
   m_ObjectHideFlags: 0
@@ -7047,6 +7078,7 @@ GameObject:
   - component: {fileID: 2013258726}
   - component: {fileID: 2013258728}
   - component: {fileID: 2013258727}
+  - component: {fileID: 2013258729}
   m_Layer: 5
   m_Name: Optiions
   m_TagString: Untagged
@@ -7093,7 +7125,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -7126,6 +7158,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013258725}
   m_CullTransparentMesh: 1
+--- !u!114 &2013258729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013258725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3c3fb9cdfdf1d4f899a5e082c96026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnRightSide: 0
 --- !u!1 &2064636620
 GameObject:
   m_ObjectHideFlags: 0
@@ -7242,6 +7287,7 @@ GameObject:
   - component: {fileID: 2135660758}
   - component: {fileID: 2135660760}
   - component: {fileID: 2135660759}
+  - component: {fileID: 2135660761}
   m_Layer: 5
   m_Name: Leaderboard
   m_TagString: Untagged
@@ -7288,7 +7334,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -7321,6 +7367,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135660757}
   m_CullTransparentMesh: 1
+--- !u!114 &2135660761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135660757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3c3fb9cdfdf1d4f899a5e082c96026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnRightSide: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5909219035711566577}
   - component: {fileID: 7031789080841644074}
   - component: {fileID: 7444343359471648565}
-  - component: {fileID: 9044555385497792852}
+  - component: {fileID: 1592681438595207888}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -201,7 +201,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -238,27 +238,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!95 &9044555385497792852
-Animator:
-  serializedVersion: 5
+--- !u!114 &1592681438595207888
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2989090062809117869}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6d4de7446b24d8c46b095820aa6c3155, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3c3fb9cdfdf1d4f899a5e082c96026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnRightSide: 0
 --- !u!1 &3721724122082356763
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +532,7 @@ GameObject:
   - component: {fileID: 356151126200568530}
   - component: {fileID: 379603135490742437}
   - component: {fileID: 5773469376055506885}
-  - component: {fileID: 2818643029445045191}
+  - component: {fileID: 8532924707384444086}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -595,7 +587,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -632,27 +624,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!95 &2818643029445045191
-Animator:
-  serializedVersion: 5
+--- !u!114 &8532924707384444086
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4874763804748110915}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1ec2d44ffe975b54dbd4145a37b58c5b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3c3fb9cdfdf1d4f899a5e082c96026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnRightSide: 0
 --- !u!1 &5376543582052657827
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +821,7 @@ GameObject:
   - component: {fileID: 534071452238711472}
   - component: {fileID: 3917410223141934532}
   - component: {fileID: 8739177934223884693}
-  - component: {fileID: 1170856119630783371}
+  - component: {fileID: 7642117832611771098}
   m_Layer: 5
   m_Name: NewGameButton
   m_TagString: Untagged
@@ -892,7 +876,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -929,27 +913,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!95 &1170856119630783371
-Animator:
-  serializedVersion: 5
+--- !u!114 &7642117832611771098
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7689033504646934881}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b362885cbf905a94cbc7736a35d94943, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b3c3fb9cdfdf1d4f899a5e082c96026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnRightSide: 0
 --- !u!1 &7751747344132630370
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,9 +987,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db015d07f90c71499acdf21002a9093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continueButton: {fileID: 7444343359471648565}
-  newGameButton: {fileID: 8739177934223884693}
-  exitButton: {fileID: 5773469376055506885}
+  continueButton: {fileID: 1592681438595207888}
+  newGameButton: {fileID: 7642117832611771098}
+  exitButton: {fileID: 8532924707384444086}
   contCount: {fileID: 2612998206710630895}
   confirmPanel: {fileID: 2116629319887271660, guid: 9c4f2ac8a54092243a4e711cd66b6a47,
     type: 3}
